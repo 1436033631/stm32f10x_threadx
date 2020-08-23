@@ -4,10 +4,11 @@
 #include "stm32f10x_conf.h"
 #include "stx_uart2.h"
 #include "stx_log.h"
+
 RCC_ClocksTypeDef RCC_Clocks;
 
 #define  APP_CFG_TASK_START_STK_SIZE                    4096u
-#define  APP_CFG_TASK_START_PRIO                        100u
+#define  APP_CFG_TASK_START_PRIO                        20u
 
 static  TX_THREAD   app_root_task_tcb;
 static  char        app_root_task_stk[APP_CFG_TASK_START_STK_SIZE];
@@ -21,13 +22,14 @@ void SystickInit(void)
     SysTick_Config(SystemCoreClock / 1000);
     NVIC_SetPriority (SysTick_IRQn, 1);
 }
+
 static void app_root_task_entry (ULONG thread_input)
 {
 	stx_shell_init();
     while (1)
 	{
-        Stx_Msg_Info("########");
-        tx_thread_sleep(1000);
+//		stx_shell_msg_send((void *)"amba", 16);
+        tx_thread_sleep(5000);
     }
 }
 
