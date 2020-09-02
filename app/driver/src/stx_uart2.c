@@ -5,6 +5,7 @@
 #include "stx_uart2.h"
 #include "stm32f10x.h"
 #include "stm32f10x_conf.h"
+#include "stx_log.h"
 
 void stx_uart2_init(void)
 {
@@ -219,3 +220,23 @@ void debug(const char *format, ...)
     print( 0, format, args );
     print( 0, "\r\n", args);
 }
+
+int shell_cmd_cut(char *src_name, char *cmd, char *name)
+{
+	int ret = STX_NG;
+	char *p_src_name = src_name;
+	char *p_cmd = cmd;
+	int index = 0;
+	while ((*p_src_name != ' ') && (*p_src_name != '\0')) {
+		*p_cmd = *p_src_name;
+		p_cmd++;
+		p_src_name++;
+		index++;
+	}
+	if (*p_src_name != '\0') {
+		memcpy(name, p_src_name+1, strlen(src_name)-index-1);
+		Stx_Msg_Debug("src_name %s, cmd %s, name %s", src_name, cmd, name);
+	}
+	return ret;
+}
+

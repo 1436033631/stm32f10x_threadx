@@ -20,9 +20,9 @@
 #define COLOR_TRACE   "37;40;1m"
 
 enum{
-    T_INFO = 0,
+    T_WARNNING = 0,
     T_DEBUG,
-    T_WARNNING,
+    T_INFO,
     T_ERROR,
 };
 static unsigned int debug_level = T_INFO;
@@ -50,6 +50,8 @@ static unsigned int debug_level = T_INFO;
         debug( ESC_START COLOR_ERROR "[%8d]-[ERROR]-[%s]-[%d]:" format ESC_END, STX_SHELL_GTE_TIME, __FUNCTION__ , __LINE__, ##args);\
     }\
     }while(0)
+
+int shell_cmd_cut(char *src_name, char *cmd, char *name);
 
 #endif
 

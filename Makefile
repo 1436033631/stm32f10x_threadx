@@ -28,8 +28,11 @@ INCLUDE_DIRS =
 # define stm32f10x lib dir
 STM32F10x_LIB_DIR      = $(ROOT_DIR)/stm32f10x_lib
 
-# define freertos dir
+# define threadx dir
 THREADX_DIR  = $(ROOT_DIR)/threadx
+
+# define guix dir
+GUIX_DIR      = $(ROOT_DIR)/guix
 
 # define user dir
 APP_DIR      = $(ROOT_DIR)/app
@@ -47,7 +50,9 @@ INCLUDE_DIRS  =
 # include sub makefiles
 include $(STM32F10x_LIB_DIR)/Makefile   # STM32 Standard Peripheral Library
 include $(THREADX_DIR)/Makefile         # threadx source
-include $(APP_DIR)/Makefile             # threadx source
+#include $(GUIX_DIR)/Makefile            # guix source
+include $(APP_DIR)/Makefile             # app source
+
 
 
 INC_DIR  = $(patsubst %, -I%, $(INCLUDE_DIRS))

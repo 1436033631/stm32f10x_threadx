@@ -29,7 +29,7 @@ static void app_root_task_entry (ULONG thread_input)
     while (1)
 	{
 //		stx_shell_msg_send((void *)"amba", 16);
-        tx_thread_sleep(5000);
+        tx_thread_sleep(1000);
     }
 }
 
